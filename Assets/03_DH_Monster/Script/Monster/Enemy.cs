@@ -203,29 +203,29 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private bool IsPlayerAttacking()
-    {
-        if (player == null) return false;
-
-        // 탐지 범위 내에서 "PlayerAttack" 태그를 가진 콜라이더를 찾기
-        Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRange);
-
-        foreach (Collider collider in colliders)
-        {
-            // "PlayerAttack" 태그를 가진 활성화된 콜라이더가 있는지 확인
-            if (collider.CompareTag("PlayerAttack") && collider.enabled)
-            {
-                return true; // 공격 콜라이더가 활성화된 경우
-            }
-        }
-
-        return false; // 활성화된 공격 콜라이더가 없으면 false
-    }
-    //나중에 위에꺼 밑에 이걸로 바꿔야함
     //private bool IsPlayerAttacking()
     //{
-    //    return player != null && player.GetComponent<PlayerController>().IsAttacking;
+    //    if (player == null) return false;
+
+    //    // 탐지 범위 내에서 "PlayerAttack" 태그를 가진 콜라이더를 찾기
+    //    Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRange);
+
+    //    foreach (Collider collider in colliders)
+    //    {
+    //        // "PlayerAttack" 태그를 가진 활성화된 콜라이더가 있는지 확인
+    //        if (collider.CompareTag("PlayerAttack") && collider.enabled)
+    //        {
+    //            return true; // 공격 콜라이더가 활성화된 경우
+    //        }
+    //    }
+
+    //    return false; // 활성화된 공격 콜라이더가 없으면 false
     //}
+    //나중에 위에꺼 밑에 이걸로 바꿔야함
+    private bool IsPlayerAttacking()
+    {
+        return player != null && player.GetComponent<PlayerController>().IsAttacking;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
