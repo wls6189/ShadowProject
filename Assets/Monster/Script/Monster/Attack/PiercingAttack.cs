@@ -15,7 +15,7 @@ private void Start()
 private void OnTriggerEnter(Collider other)
 {
     // Parry 태그와 충돌 시
-    if (other.CompareTag("detection"))
+    if (other.CompareTag("Penetrate"))
     {
         
         parrySuccessful = true; // 패링 성공 상태 기록
