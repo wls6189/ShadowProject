@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 856155608}
   - component: {fileID: 856155607}
   - component: {fileID: 856155606}
+  - component: {fileID: 856155609}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -361,13 +362,57 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 856155605}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.2905207, y: 0.35316542, z: -0.11637303, w: 0.8816628}
+  m_LocalPosition: {x: -2.838377, y: 8.825678, z: -8.577144}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &856155609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856155605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &1235013079
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,18 +542,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5408781210729981216, guid: 1961e745ffa31634fb8b2e9064f40e2d, type: 3}
-      propertyPath: itemDrops.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5408781210729981216, guid: 1961e745ffa31634fb8b2e9064f40e2d, type: 3}
-      propertyPath: itemDrops.Array.data[1].dropChance
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5408781210729981216, guid: 1961e745ffa31634fb8b2e9064f40e2d, type: 3}
-      propertyPath: itemDrops.Array.data[1].itemPrefab
-      value: 
-      objectReference: {fileID: 8939779833416749433, guid: 965de020c7a9e2743b741bf87c093ff9, type: 3}
     - target: {fileID: 6935484786879131882, guid: 1961e745ffa31634fb8b2e9064f40e2d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -552,10 +585,6 @@ PrefabInstance:
     - target: {fileID: 7742842274068703824, guid: 1961e745ffa31634fb8b2e9064f40e2d, type: 3}
       propertyPath: m_Name
       value: WeakDevilPrefab
-      objectReference: {fileID: 0}
-    - target: {fileID: 7742842274068703824, guid: 1961e745ffa31634fb8b2e9064f40e2d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

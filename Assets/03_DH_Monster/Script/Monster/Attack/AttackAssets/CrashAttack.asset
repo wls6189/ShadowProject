@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 341b01a14c0b4ba4694d2aff14b9e34d, type: 3}
-  m_Name: DoubleAttack
+  m_Name: CrashAttack
   m_EditorClassIdentifier: 
-  attackName: DoubleAttack
-  attackType: 0
-  attackRange: 3
-  indicatorhLevel: 0
+  attackName: CrashAttack
+  attackType: 4
+  attackRange: 2
+  indicatorhLevel: 3
   indicatorColor: {r: 1, g: 0, b: 0, a: 1}

@@ -229,36 +229,41 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (currentState == State.Guard && other.CompareTag("PlayerAttack"))
-        {
-            guardSuccessCount++;
-            Debug.Log($"Guard successful! Total: {guardSuccessCount}");
-            animator.SetTrigger("GuardSuccess");
+        PlayerController player = other.GetComponent<PlayerController>();
 
-            if (guardSuccessCount >= successfulGuardsToParry)
-            {
-                // 패리 상태로 전환
-                currentState = State.Parry;
-                parryStartTime = Time.time;
-                guardSuccessCount = 0; // 카운트 초기화
-                Debug.Log("Switching to Parry State.");
-                guardCollider.gameObject.SetActive(false); // 가드 콜라이더 비활성화
-                parryCollider.gameObject.SetActive(true); // 패리 콜라이더 활성화
-            }
-            else
-            {
-                Debug.Log("Guarded successfully.");
-            }
-        }
-
-        // 패리 상태에서 플레이어 공격 감지
-        if (currentState == State.Parry && other.CompareTag("PlayerAttack"))
+        if (player != null && player.IsAttacking) // 플레이어가 공격 중일 때
         {
-            Debug.Log("Parry successful! Player attack was countered.");
-            animator.SetTrigger("ParrySuccess");        
-            // 패리 상태 종료
-            currentState = State.Chasing;
-            parryCollider.gameObject.SetActive(false); // 패리 콜라이더 비활성화
+            if (currentState == State.Guard)
+            {
+                guardSuccessCount++;
+                Debug.Log($"Guard successful! Total: {guardSuccessCount}");
+                animator.SetTrigger("GuardSuccess");
+
+                if (guardSuccessCount >= successfulGuardsToParry)
+                {
+                    // 패리 상태로 전환
+                    currentState = State.Parry;
+                    parryStartTime = Time.time;
+                    guardSuccessCount = 0; // 카운트 초기화
+                    Debug.Log("Switching to Parry State.");
+                    guardCollider.gameObject.SetActive(false); // 가드 콜라이더 비활성화
+                    parryCollider.gameObject.SetActive(true); // 패리 콜라이더 활성화
+                }
+                else
+                {
+                    Debug.Log("Guarded successfully.");
+                }
+            }
+
+            // 패리 상태에서 플레이어 공격 감지
+            if (currentState == State.Parry)
+            {
+                Debug.Log("Parry successful! Player attack was countered.");
+                animator.SetTrigger("ParrySuccess");
+                // 패리 상태 종료
+                currentState = State.Chasing;
+                parryCollider.gameObject.SetActive(false); // 패리 콜라이더 비활성화
+            }
         }
     }
 
@@ -293,15 +298,16 @@ public class Enemy : MonoBehaviour
         animator.SetTrigger(currentAttack.attackName);  // 예: "Heavy Strike" 또는 "Quick Parry" 등
         lastAttackTime = Time.time; // 현재 시간 저장
 
-        //여기 인디케이터 추가예정
-        
+
+
 
         // 공격 수행
-        
+
 
 
         // 다음 공격으로 이동
-        currentAttackIndex = (currentAttackIndex + 1) % currentPattern.attacks.Length;
+        //currentAttackIndex = (currentAttackIndex + 1) % currentPattern.attacks.Length;//이건 순차적으로 공격
+        currentAttackIndex = Random.Range(0, currentPattern.attacks.Length);//이건 랜덤
 
         // 패턴 변경 로직 (원하는 시점에)
         if (currentAttackIndex == 0)

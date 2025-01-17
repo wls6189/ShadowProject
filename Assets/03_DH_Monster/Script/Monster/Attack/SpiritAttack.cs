@@ -1,22 +1,20 @@
 using UnityEngine;
 
-public class NormalAttack : MonoBehaviour
+public class SpiritAttack : MonoBehaviour
 {
     public float damage = 10f; // 기본 공격력
     private bool parrySuccessful = false; // 패링 성공 여부
-    
-
 
 
     private void OnTriggerEnter(Collider other)
     {
-        // Parry 태그와 충돌 시
+
         PlayerController player = other.GetComponent<PlayerController>();
-        //if (player != null && (player.IsGuarding || player.IsParrying || player.IsSpiritParrying))
+        //if (player != null && player.IsSpiritParrying)
         {
-            Debug.Log($"{other.tag} 콜라이더와 충돌: 패링 성공! 공격 무효화");
+
             parrySuccessful = true; // 패링 성공 상태 기록
-            //playerScript.OnParrySuccess(); // 플레이어에게 패링 성공 알림
+          //playerScript.OnParrySuccess(); // 플레이어에게 패링 성공 알림
             return; // 이후 처리 중단
         }
 
