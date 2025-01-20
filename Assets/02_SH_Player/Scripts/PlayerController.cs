@@ -60,7 +60,6 @@ public class PlayerController : MonoBehaviour
     InputAction attack1Action;
     InputAction attack2Action;
 
-
     // 부가적인 변수
     [HideInInspector] public Animator Animator;
     [HideInInspector] public PlayerAnimationSetter AnimationSetter;
@@ -91,7 +90,6 @@ public class PlayerController : MonoBehaviour
         dashAndPenetrateAction = inputActionAsset.FindAction("DashAndPenetrate");
         attack1Action = inputActionAsset.FindAction("Attack1");
         attack2Action = inputActionAsset.FindAction("Attack2");
-     
     }
     void Start()
     {
@@ -258,7 +256,5 @@ public class PlayerController : MonoBehaviour
             PlayerStateMachine.TransitionTo(PlayerStateMachine.basicVerticalSlashState);
         }
     }
-
-
 
 }

@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerControllerTest : MonoBehaviour
@@ -10,20 +8,6 @@ public class PlayerControllerTest : MonoBehaviour
 
     [SerializeField]
     float moveSpeed = 3.0f;
-
-    //InputActionAsset inputActionAsset;
-    // InputAction gameMenuAction;
-
-    private void Awake()
-    {
-     
-    }
-    private void Start()
-    {
-    
-        
-        //gameMenuAction = inputActionAsset.FindAction("GameMenu");
-    }
     void Update()
     {
         if(DialogSystem.Instance.isdialogueCanvas == false)
@@ -35,29 +19,15 @@ public class PlayerControllerTest : MonoBehaviour
         {
             InventoryCheck();
         }
-
-        OnInteraction();
     }
-    void OnInteraction()
-    {
 
-        if (Input.GetKeyDown(KeyCode.Escape )) //  if (gameMenuAction.WasPressedThisFrame()) 나중에 합쳐지면 이걸로 할 예정.
-        {
-            if (UIManager.Instance.IsGameMenuOpen) 
-            {
-                UIManager.Instance.GameMenuClose(); 
-            }
-            else
-            {
-                UIManager.Instance.GameMenuOpen(); 
-            }
-        }
-    }
     void MovePlayer()
     {
-        float h = Input.GetAxisRaw("Horizontal");
+        float h = Input.GetAxisRaw("Horizontal"); //-1,0,1 반환
 
         Vector3 movement = new Vector3(h, 0, 0) * moveSpeed * Time.deltaTime;
+
+        // Transform을 사용한 이동
         transform.Translate(movement);
     }
 
@@ -77,6 +47,7 @@ public class PlayerControllerTest : MonoBehaviour
 
     void InventoryCheck()
     {
+        Debug.Log("현재 인벤토리 상태:");
         foreach (var item in collectedItems)
         {
             Debug.Log($"아이템: {item.Key}, 개수: {item.Value}");
@@ -90,7 +61,7 @@ public class PlayerControllerTest : MonoBehaviour
 
    public void RemoveItem(string itemName,int count)
     {
-        if (collectedItems.ContainsKey(itemName)) //인벤토리에 itemName이라는 아이템이 있을 경우. 아이템 이름으로 판별.
+        if (collectedItems.ContainsKey(itemName))
         {
             collectedItems[itemName] -= count;
             Debug.Log($"아이템 '{itemName}'의 개수가 {count} 만큼 감소. 남은 개수: {collectedItems[itemName]}");
@@ -101,28 +72,9 @@ public class PlayerControllerTest : MonoBehaviour
                 Debug.Log($"아이템 '{itemName}'이 인벤토리에서 없어짐.");
             }
         }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.CompareTag("FragMent"))
+        else
         {
-            SavePlayerData();
+            Debug.Log($"아이템 '{itemName}'이 인벤토리에 없습니다.");
         }
-        if (other.CompareTag("Portal"))
-        {
-            SceneManager.LoadScene(2);
-        }
-    }
-
-    private void SavePlayerData()
-    {
-        // 플레이어 위치 및 현재 씬 저장
-        DataManager.Instance.nowPlayer.position = transform.position;
-        DataManager.Instance.nowPlayer.currentScene = SceneManager.GetActiveScene().name;
-
-        // 데이터 저장
-        DataManager.Instance.SaveData();
-        Debug.Log("Player data saved." + DataManager.Instance.nowPlayer.position);
     }
 }

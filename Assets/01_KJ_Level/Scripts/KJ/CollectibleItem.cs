@@ -4,7 +4,7 @@ using UnityEngine;
 public class CollectibleItem : MonoBehaviour
 {
     [SerializeField]
-    string itemName; 
+    string itemName; // 아이템 이름
 
     private void Start()
     {
@@ -16,7 +16,7 @@ public class CollectibleItem : MonoBehaviour
         {
             PlayerControllerTest player = other.GetComponent<PlayerControllerTest>();
             player.CollectItem(itemName);
-            Destroy(this.gameObject); 
+            Destroy(this.gameObject); // 아이템 오브젝트 제거
         }
     }
 

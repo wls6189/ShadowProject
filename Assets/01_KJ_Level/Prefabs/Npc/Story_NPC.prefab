@@ -267,18 +267,18 @@ MonoBehaviour:
   rotationSpeed: 15
   isTalkingwithPlayer: 0
   NpcTalkImage: {fileID: 2722608009818701970}
-  Quests:
-  - questName: "\uC601\uD63C\uD30C\uD3B8 \uC0C1\uD638\uC791\uC6A9"
-    questGiver: "\uBE5B\uC758 \uB300\uB9AC\uC790"
-    info: {fileID: 11400000, guid: 1e64961a5256d284fbc7e06d9fe43098, type: 2}
+  quests:
+  - isFirstCompleted: 0
+    isSecondCompleted: 0
+    storyinfo: {fileID: 11400000, guid: df7f26aee792add4386658e6b2a6e8c4, type: 2}
   currentActiveQuest:
-    questName: 
-    questGiver: 
-    info: {fileID: 0}
-  isFirstOption: 0
-  isSecondOption: 0
-  isAccepted: 0
-  isDecline: 0
+    isFirstCompleted: 0
+    isSecondCompleted: 0
+    storyinfo: {fileID: 0}
+  ActiveQuestIndex: 0
+  isFirstTimeInteraction: 1
+  CurrentFirstDialog: 0
+  CurrentSecondDialog: 0
 --- !u!1 &2722608009818701970
 GameObject:
   m_ObjectHideFlags: 0
