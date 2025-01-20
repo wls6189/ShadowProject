@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackName: Grab
   attackType: 3
-  attackRange: 3
+  attackRange: 2
   indicatorhLevel: 2
   indicatorColor: {r: 1, g: 0, b: 0, a: 1}
