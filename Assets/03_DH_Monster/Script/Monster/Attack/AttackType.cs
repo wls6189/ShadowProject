@@ -5,6 +5,6 @@ public enum AttackType
     Bottom,
     Grab,
     Clash,
-    Soul,
+    Spirit,
     Energy
 }

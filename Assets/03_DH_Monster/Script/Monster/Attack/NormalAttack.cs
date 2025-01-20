@@ -4,18 +4,15 @@ public class NormalAttack : MonoBehaviour
 {
     public float damage = 10f; // 기본 공격력
     private bool parrySuccessful = false; // 패링 성공 여부
-    private Player playerScript; // 플레이어 스크립트 참조
+    
 
-    private void Start()
-    {
-        // 플레이어 스크립트 참조
-        playerScript = GameObject.FindWithTag("Player").GetComponent<Player>();
-    }
+
 
     private void OnTriggerEnter(Collider other)
     {
         // Parry 태그와 충돌 시
-        if (other.CompareTag("Parry") || other.CompareTag("Guard") || other.CompareTag("SoulParry"))
+        PlayerController player = other.GetComponent<PlayerController>();
+        if (player != null && (player.IsGuarding || player.IsParrying || player.IsSpiritParrying))
         {
             Debug.Log($"{other.tag} 콜라이더와 충돌: 패링 성공! 공격 무효화");
             parrySuccessful = true; // 패링 성공 상태 기록

@@ -15,5 +15,5 @@ MonoBehaviour:
   attackName: DoubleAttack
   attackType: 0
   attackRange: 3
-  indicatorhLevel: 1
+  indicatorhLevel: 0
   indicatorColor: {r: 1, g: 0, b: 0, a: 1}

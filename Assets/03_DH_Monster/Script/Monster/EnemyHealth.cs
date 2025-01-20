@@ -78,7 +78,7 @@ public class EnemyHealth : MonoBehaviour
 
     // 영혼 게이지 회복 메서드
 
-    private void EnterKnockdown()
+    public void EnterKnockdown()//외부호출용
     {
         animator.SetTrigger("Knockdown");
 
@@ -90,6 +90,10 @@ public class EnemyHealth : MonoBehaviour
             currentSoulGauge = maxSoulGauge; // 소울 게이지를 최대값으로 회복
             
         }
+    }
+    public void EnterShortGroggy()//외부호출용
+    {
+        animator.SetTrigger("ShortGroggy");
     }
 
 
