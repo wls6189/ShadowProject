@@ -40,14 +40,12 @@ public class PlayerAnimationSetter : MonoBehaviour
         OffWeaponCollider();
         OffAttackMoving();
 
-        yield return new WaitForSeconds(fps * 6);
+        yield return new WaitForSeconds(fps * 15);
         OnBasicHorizonSlashCombo();
+        AttackEnd();
 
         yield return new WaitForSeconds(fps * 8);
         OffBasicHorizonSlashCombo();
-        AttackEnd();
-
-        Debug.Log("끝까지실행?");
     }
 
     public void StartBasicHorizonSlash2()
@@ -74,16 +72,20 @@ public class PlayerAnimationSetter : MonoBehaviour
         yield return new WaitForSeconds(fps * 19);
         AttackEnd();
     }
+
+    Coroutine basicVerticalSlashRoutine;
     public void StartBasicVerticalSlash()
     {
-        StopAllCoroutines();
-        StartCoroutine(BasicVerticalSlashCoroutine());
+        if (basicVerticalSlashRoutine == null)
+        {
+            StopAllCoroutines();
+            basicVerticalSlashRoutine = StartCoroutine(BasicVerticalSlashCoroutine());
+        }
     }
-
     IEnumerator BasicVerticalSlashCoroutine()
     {
         float fps = FindAnimationClip("BasicVerticalSlash").length / basicVerticalSlashFrame;
-        OffBasicHorizonSlashCombo();
+        AttackStart();
 
         yield return new WaitForSeconds(fps * 8);
         OnAttackMoving();
@@ -93,8 +95,11 @@ public class PlayerAnimationSetter : MonoBehaviour
         OffWeaponCollider();
         OffAttackMoving();
 
-        yield return new WaitForSeconds(fps * 13);
+        yield return new WaitForSeconds(fps * 15);
         AttackEnd();
+
+        yield return new WaitForSeconds(fps * 9);
+        TransitionToIdle();
     }
 
 
@@ -143,6 +148,10 @@ public class PlayerAnimationSetter : MonoBehaviour
         player.IsAttacking = true;
     }
     public void AttackEnd()
+    {
+        player.IsAttacking = false;
+    }
+    public void TransitionToIdle()
     {
         player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.idleAndMoveState);
     }
