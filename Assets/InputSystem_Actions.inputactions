@@ -33,6 +33,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Attack3",
+                    "type": "Button",
+                    "id": "62e2a029-a8e6-4daa-91bb-fa589b3ede65",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Guard",
                     "type": "Button",
                     "id": "17215f23-8677-466f-be26-1648fcb5e7e2",
@@ -228,11 +237,22 @@
                     "action": "LockOn",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "be480609-0971-4a1f-b847-d2d698144659",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Attack3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
         {
-            "name": "UI",
+            "name": "Interface",
             "id": "272f6d14-89ba-496f-b7ff-215263d3219f",
             "actions": [
                 {

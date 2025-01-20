@@ -3,7 +3,7 @@ using UnityEngine;
 public class GroundCheck : MonoBehaviour
 {
     [SerializeField] PlayerController playerController;
-    public bool IsTouching;
+    [HideInInspector] public bool IsTouching;
 
     private void OnTriggerEnter(Collider other)
     {

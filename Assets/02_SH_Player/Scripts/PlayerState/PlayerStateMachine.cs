@@ -11,6 +11,8 @@ public class PlayerStateMachine
     public BasicHorizonSlash1State basicHorizonSlash1State;
     public BasicHorizonSlash2State basicHorizonSlash2State;
     public BasicVerticalSlashState basicVerticalSlashState;
+    public GuardState guardState;
+    public ThrustState thrustState;
 
     public PlayerStateMachine(PlayerController player)
     {
@@ -21,6 +23,8 @@ public class PlayerStateMachine
         basicHorizonSlash1State = new(player);
         basicHorizonSlash2State = new(player);
         basicVerticalSlashState = new(player);
+        guardState = new(player);
+        thrustState = new(player);
     }
 
     public void Initialize(IState state)
