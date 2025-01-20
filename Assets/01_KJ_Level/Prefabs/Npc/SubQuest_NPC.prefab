@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8583782121462621198}
   - component: {fileID: 6615468553300902879}
   - component: {fileID: 6670688748957045531}
+  - component: {fileID: 151142400915960173}
   m_Layer: 0
   m_Name: NPC_Canvas
   m_TagString: Untagged
@@ -102,6 +103,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &151142400915960173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742017398402226536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ad53281956942c4f82a735ff946c7b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2563251957027794797
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,7 +128,7 @@ GameObject:
   - component: {fileID: 3678187428980515560}
   - component: {fileID: 2931141356063582932}
   - component: {fileID: 9014930064536141256}
-  - component: {fileID: 3408962086291122435}
+  - component: {fileID: 8946076785348974201}
   m_Layer: 0
   m_Name: SubQuest_NPC
   m_TagString: Untagged
@@ -171,7 +184,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: e8bc4767b6238814682d39b11f624a99, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -237,7 +250,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5.3534317, y: 2, z: 4.534487}
   m_Center: {x: -0.10052776, y: 0, z: 0.012480736}
---- !u!114 &3408962086291122435
+--- !u!114 &8946076785348974201
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -246,35 +259,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 2563251957027794797}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3877f2ee5f3971b4a9fd6eda4f5d7693, type: 3}
+  m_Script: {fileID: 11500000, guid: 99c30fe96f4a2c84c9ca29534431d9c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerInRange: 0
   player: {fileID: 0}
-  rotationSpeed: 13
+  rotationSpeed: 15
   isTalkingwithPlayer: 0
   NpcTalkImage: {fileID: 2722608009818701970}
-  quests:
+  Quests:
   - questName: "\uB9C9\uB300\uAE30 \uD30C\uBC0D"
-    questGiver: "\uAE40\uC9C4"
-    isAccepted: 0
-    isDeclined: 0
-    isInitialDialogCompleted: 0
-    isCompleted: 0
-    isHasNoRequirements: 0
-    info: {fileID: 11400000, guid: a09821350a653d34b8838b479605b0d2, type: 2}
+    questGiver: "\uAE30\uBB34\uC9C4"
+    info: {fileID: 11400000, guid: 61a7457cf44200a4eb423064842da882, type: 2}
   currentActiveQuest:
     questName: 
     questGiver: 
-    isAccepted: 0
-    isDeclined: 0
-    isInitialDialogCompleted: 0
-    isCompleted: 0
-    isHasNoRequirements: 0
     info: {fileID: 0}
-  ActiveQuestIndex: 0
-  isFirstTimeInteraction: 1
-  CurrentDialog: 0
+  isFirstOption: 0
+  isSecondOption: 0
+  isAccepted: 0
+  isDecline: 0
 --- !u!1 &2722608009818701970
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,7 +389,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Talk
+  m_text: 'Talk [F]'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

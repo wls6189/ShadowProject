@@ -1,6 +1,9 @@
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public class QuestManager : MonoBehaviour
 {
@@ -32,28 +35,28 @@ public class QuestManager : MonoBehaviour
         }
     }
 
+    [SerializeField]
+    GameObject FinishQuestExplain;
+    [SerializeField]
+    GameObject NotFinishQuestExplain;
+
     public List<Quest> allActiveQuests; //활성화된 퀘스트를 보관할 리스트. 즉, 새로운 퀘스트가 시작 될 때 이 리스트에 추가됨
     public List<Quest> allCompletedQuests; //활성화된 퀘스트를 완료하고 나서 보관할 리스트. 즉, 퀘스트를 완료했을 때 이 리스트에 추가됨.
 
 
     [Header("QuestMenu")]
-    public GameObject questMenu; //내 퀘스트 목록 UI
     public bool isQuestMenuOpen; //내 퀘스트 UI 활성화 여부
 
     public GameObject activeQuestPrefab;  //현재 활성화된 퀘스트를 표시하기 위한 UI 프리팹
     public GameObject completeQuestPrefab; //완료된 퀘스트를 표시하기 위한 UI 프리팹
+
+    public GameObject activeQuestHintPrefab; //완료된 퀘스트를 표시하기 위한 UI 프리팹
 
     public GameObject questMenuContent; //퀘스트 메뉴의 스크롤뷰 콘텐츠 객체를 참조, 활성화된 퀘스트와 완료된 퀘스트를 UI에 동적으로 추가할 때,
                                         //이 객체의 자식으로 프리팹이 생성됩니다.
 
     [Header("QuestTracker")]
     public GameObject questTrackerContent; //현재 추적 중인 퀘스트 정보를 표시하는 UI의 콘텐츠 객체
-
-
-    private void Update()
-    {
-        
-    }
 
     public void AddActiveQuest(Quest quest)
     {
@@ -62,7 +65,8 @@ public class QuestManager : MonoBehaviour
     }
 
     public void MarkQuestCompleted(Quest quest)
-    {
+    {    
+
         allActiveQuests.Remove(quest);
         allCompletedQuests.Add(quest);
 
@@ -71,7 +75,10 @@ public class QuestManager : MonoBehaviour
 
     public void RefreshQuestList()//활성화된 퀘스트 목록 또는 완료된 퀘스트 목록에 대한 퀘스트 새로고침 기능이 필요.
     {
-        foreach(Transform child in questMenuContent.transform)
+        FinishQuestExplain.gameObject.SetActive(false);
+        NotFinishQuestExplain.gameObject.SetActive(false);
+
+        foreach (Transform child in questMenuContent.transform)
         {
             Destroy(child.gameObject);
         }
@@ -89,12 +96,12 @@ public class QuestManager : MonoBehaviour
             qRow.isActive = true;
             qRow.isTracking = true;
 
-            qRow.coinAmount.text = $"{actvieQuest.info.coinReward}";
 
-           // qRow.firstRewardAmount.text = $"{actvieQuest.info.firstRequirmentAmount}";
-            qRow.firstRewardAmount.text = "";
-
-            qRow.secondRewardAmount.text = "";
+            Button button = questPrefab.GetComponent<Button>();
+            if (button != null)
+            {
+                button.onClick.AddListener(() => OnQuestClicked(actvieQuest));
+            }
         }
 
         foreach (Quest completeQuest in allCompletedQuests)
@@ -110,12 +117,40 @@ public class QuestManager : MonoBehaviour
             qRow.isActive = false;
             qRow.isTracking = false;
 
-            qRow.coinAmount.text = $"{completeQuest.info.coinReward}";
-
-            // qRow.firstRewardAmount.text = $"{actvieQuest.info.firstRequirmentAmount}";
-            qRow.firstRewardAmount.text = "";
-
-            qRow.secondRewardAmount.text = "";
+            Button button = questPrefab.GetComponent<Button>();
+            if (button != null)
+            {
+                button.onClick.AddListener(() => OnQuestFiniShClicked(completeQuest));
+            }
         }
+    }
+
+    private void OnQuestClicked(Quest activeQuest)
+    {
+        NotFinishQuestExplain.gameObject.SetActive(true);
+        FinishQuestExplain.gameObject.SetActive(false);
+
+        QuestRow qRow = NotFinishQuestExplain.GetComponent<QuestRow>();
+        qRow.quesetName.text = activeQuest.questName;
+        qRow.questGiver.text = activeQuest.questGiver;
+        qRow.questHint.text = activeQuest.info.hintExplain;
+    }
+    private void OnQuestFiniShClicked(Quest finishQuest)
+    {
+        FinishQuestExplain.gameObject.SetActive(true);
+        NotFinishQuestExplain.gameObject.SetActive(false);
+
+        QuestRow qRow = FinishQuestExplain.GetComponent<QuestRow>();
+
+        qRow.quesetName.text = finishQuest.questName;
+        qRow.questGiver.text = finishQuest.questGiver;
+
+        qRow.questHint.text = finishQuest.info.hintExplain;
+
+
+        qRow.firstRewardAmount.text = finishQuest.info.firstRequirmentAmount.ToString();
+
+        qRow.secondRewardAmount.text = finishQuest.info.secondRequirmentAmount.ToString();
+
     }
 }

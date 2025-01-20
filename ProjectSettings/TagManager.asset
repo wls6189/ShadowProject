@@ -11,6 +11,10 @@ TagManager:
   - SoulParry
   - Guard
   - Penetrate
+  - PlayerAttack
+  - PlayerSoulAttack
+  - FragMent
+  - Portal
   layers:
   - Default
   - TransparentFX
